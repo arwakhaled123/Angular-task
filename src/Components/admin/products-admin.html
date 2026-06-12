@@ -1,0 +1,38 @@
+<h2>Products Admin</h2>
+<table class="prod-table">
+  <thead>
+    <tr><th>Title</th><th>Price</th><th>Stock</th><th>Category</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of items">
+      <td>
+        <div *ngIf="!editing[p.id]">{{p.title}}</div>
+        <input *ngIf="editing[p.id]" [(ngModel)]="p.title" />
+      </td>
+      <td>
+        <div *ngIf="!editing[p.id]">{{p.price}}</div>
+        <input *ngIf="editing[p.id]" type="number" [(ngModel)]="p.price" />
+      </td>
+      <td>
+        <div *ngIf="!editing[p.id]">{{p.stock}}</div>
+        <input *ngIf="editing[p.id]" type="number" [(ngModel)]="p.stock" />
+      </td>
+      <td>
+        <div *ngIf="!editing[p.id]">{{p.category}}</div>
+        <input *ngIf="editing[p.id]" [(ngModel)]="p.category" />
+      </td>
+      <td>
+        <button *ngIf="!editing[p.id]" (click)="edit(p.id)">Edit</button>
+        <button *ngIf="editing[p.id]" (click)="save(p.id,p)">Save</button>
+        <button (click)="del(p.id)">Delete</button>
+      </td>
+    </tr>
+    <tr class="new-row">
+      <td><input [(ngModel)]="newRow.title" placeholder="Title" /></td>
+      <td><input type="number" [(ngModel)]="newRow.price" /></td>
+      <td><input type="number" [(ngModel)]="newRow.stock" /></td>
+      <td><input [(ngModel)]="newRow.category" /></td>
+      <td><button (click)="add()">Add</button></td>
+    </tr>
+  </tbody>
+</table>

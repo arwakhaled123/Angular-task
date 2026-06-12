@@ -1,0 +1,27 @@
+<div class="auth-card">
+  <h2>Sign up</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <label>
+      Name
+      <input formControlName="name" />
+    </label>
+    <label>
+      Email
+      <input formControlName="email" />
+    </label>
+    <label>
+      Password
+      <input type="password" formControlName="password" />
+    </label>
+    <label>
+      Confirm Password
+      <input type="password" formControlName="confirm" />
+    </label>
+
+    <div *ngIf="form.errors?.['mismatch']" class="err">Passwords do not match</div>
+
+    <button type="submit">Create Account</button>
+  </form>
+
+  <p>Already have account? <a routerLink="/login">Login</a></p>
+</div>

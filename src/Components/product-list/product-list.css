@@ -44,3 +44,9 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 25px;
 }
+
+  /* dark mode support: inherit from parent .dark via host-context */
+  :host-context(.dark) .products-grid {
+    background: #111;
+    color: #eee;
+  }

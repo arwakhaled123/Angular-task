@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product, DUMMY_PRODUCTS } from '../../models/products.data';
+import { ProductsService } from '../../app/products.service';
 import { ProductCardComponent } from '../product-card/product-card';
 import { ThemeDirective } from '../../directives/theme.directive';
 
@@ -24,13 +25,19 @@ export class ProductList implements OnInit {
 
   currentTheme: 'light' | 'dark' = 'light';
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, private productsService: ProductsService) {}
 
   ngOnInit() {
-
-    this.products = JSON.parse(JSON.stringify(DUMMY_PRODUCTS));
-    this.filteredProducts = [...this.products];
-    this.calculateTotal();
+    this.productsService.loadAll().subscribe(items => {
+      this.products = JSON.parse(JSON.stringify(items));
+      this.filteredProducts = [...this.products];
+      this.calculateTotal();
+    }, () => {
+      // fallback to local dummy data
+      this.products = JSON.parse(JSON.stringify(DUMMY_PRODUCTS));
+      this.filteredProducts = [...this.products];
+      this.calculateTotal();
+    });
   }
 
   toggleTheme() {

@@ -36,3 +36,9 @@
 .quantity-control button { width: 32px; height: 32px; border-radius: 50%; border: 1px solid #ccc; background: #fff; cursor: pointer; font-weight: bold;}
 .quantity-control button:disabled { opacity: 0.5; cursor: not-allowed; }
 .qty { font-weight: bold; font-size: 16px; }
+
+/* dark mode via host-context */
+:host-context(.dark) .card{background:#1a1a1a;color:#eee;border-color:#333}
+:host-context(.dark) .price{color:#ffd54f}
+:host-context(.dark) .category{color:#cfcfcf}
+

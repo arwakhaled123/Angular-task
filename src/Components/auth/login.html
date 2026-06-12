@@ -1,0 +1,22 @@
+<div class="auth-card">
+  <h2>Login</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <label>
+      Email
+      <input formControlName="email" type="email" />
+    </label>
+    <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="err">Enter a valid email</div>
+
+    <label>
+      Password
+      <input formControlName="password" type="password" />
+    </label>
+    <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="err">Password required (min 6)</div>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <button class="google" (click)="googleLogin()">Login with Google</button>
+
+  <p>Don't have account? <a routerLink="/signup">Sign up</a></p>
+</div>

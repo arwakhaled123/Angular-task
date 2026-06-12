@@ -1,0 +1,7 @@
+.prod-table{width:100%;border-collapse:collapse}
+.prod-table th,.prod-table td{border:1px solid #ddd;padding:8px}
+.new-row input{width:100%}
+
+/* dark mode styling via host-context */
+:host-context(.dark) .prod-table{background:#222;color:#eee}
+:host-context(.dark) .prod-table th,.prod-table td{border-color:#444}
