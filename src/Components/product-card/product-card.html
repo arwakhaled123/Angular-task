@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="img-container">
+    <img [src]="product.image" [alt]="product.title" appZoom />
+  </div>
+
+  <div class="card-body">
+    <h3>{{ product.title }}</h3>
+    <p class="category">Category: {{ product.category }}</p>
+
+    <p class="description">
+      {{ product.description | readMore:showFullDescription }}
+      <span class="read-more-btn" (click)="toggleDescription()">
+        {{ showFullDescription ? 'Show Less' : 'Read More' }}
+      </span>
+    </p>
+
+    <p class="price">\${{ product.price }}</p>
+
+    <div class="stock-status">
+      <span *ngIf="product.stock === 0" class="badge out-of-stock">Out of Stock</span>
+      <span *ngIf="product.stock > 0 && product.stock <= 2" class="badge low-stock">Only {{ product.stock }} left!</span>
+      <span *ngIf="product.stock > 2" class="badge in-stock">In Stock ({{ product.stock }})</span>
+
+      <span *ngIf="product.quantitySelected === 2" class="badge pair-selected">2 Items Selected!</span>
+    </div>
+
+    <div class="quantity-control" *ngIf="product.stock > 0">
+      <button (click)="decrease()" [disabled]="product.quantitySelected <= 0">-</button>
+      <span class="qty">{{ product.quantitySelected }}</span>
+      <button (click)="increase()" [disabled]="product.quantitySelected >= product.stock">+</button>
+    </div>
+
+    <div class="buy-container">
+      <app-dynamic-button
+        label="Buy Now"
+        [btnColorClass]="product.category === 'smartphones' ? 'btn-green' : 'btn-blue'"
+        [isDisabled]="product.quantitySelected === 0"
+        (btnClick)="onBuy()">
+      </app-dynamic-button>
+    </div>
+  </div>
+</div>
