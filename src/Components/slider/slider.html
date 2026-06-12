@@ -1,0 +1,14 @@
+<div class="slider-container">
+
+  <div class="image-box">
+    <img [src]="sliderData.images[currentIndex]" alt="Slider Image">
+  </div>
+
+  <div class="buttons-group">
+    <button (click)="display()">Display</button>
+    <button (click)="stop()">Stop</button>
+    <button (click)="next()">Next</button>
+    <button (click)="prev()">Prev</button>
+  </div>
+
+</div>
